@@ -7,7 +7,7 @@ const App = () => {
 
   useEffect(() => {
     const moviesAfterFilter = allMovies.filter((oneMovie) => {
-      return oneMovie.title.includes(searchingText);
+      return oneMovie.title.toLowerCase().includes(searchingText.toLowerCase());
     });
     setFilteredMovies(moviesAfterFilter);
   }, [searchingText]);
