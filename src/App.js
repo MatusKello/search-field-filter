@@ -1,13 +1,6 @@
 import allMovies from './data';
 import { useState, useEffect } from 'react';
-import {
-  Card,
-  Box,
-  Typography,
-  ThemeProvider,
-  TextField,
-  ImageList,
-} from '@mui/material';
+import { Card, Box, Typography, ThemeProvider, TextField } from '@mui/material';
 import theme from './config/theme';
 
 const App = () => {
@@ -23,21 +16,35 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ background: theme.palette.primary.main }}>
-        <TextField
-          variant='filled'
+      <Box
+        sx={{
+          background: theme.palette.primary.main,
+          minHeight: '100vh',
+        }}
+      >
+        <Box
           sx={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            margin: '1rem',
-            marginTop: '0',
-            background: theme.palette.tertiary.main,
+            padding: '1rem',
           }}
-          type='text'
-          placeholder='Search'
-          onChange={(e) => setSearchingText(e.target.value)}
-        />
+        >
+          <TextField
+            sx={{
+              background: theme.palette.tertiary.main,
+              '& input::placeholder': {
+                textAlign: 'center',
+              },
+            }}
+            variant='standard'
+            type='text'
+            placeholder='Search'
+            onChange={(e) => setSearchingText(e.target.value)}
+            size='small'
+          />
+        </Box>
+
         <Card
           sx={{
             display: 'flex',
@@ -62,13 +69,14 @@ const App = () => {
                   color: theme.palette.tertiary.main,
                 }}
               >
-                <ImageList
+                <Box
                   sx={{
-                    width: '20rem',
+                    width: '100%',
+                    border: '1px solid red',
                   }}
                 >
-                  <img src={image} alt='' />
-                </ImageList>
+                  <img src={image} alt='' style={{ objectFit: 'cover' }} />
+                </Box>
                 <Typography variant='h5'>{title}</Typography>
                 <Typography>{age}</Typography>
                 <Typography>{tags}</Typography>
